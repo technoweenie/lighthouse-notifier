@@ -9,10 +9,20 @@ post '/update' do
     case target.keys.first
       when 'version'
         data = target['version']
-        %(User #{data['user_id']} updated the ticket '#{data['title']}' (#{data['state']}): /projects/#{data['project_id']}/tickets/#{data['number']})
+        %(#{data['user_name']} updated the ticket '#{data['title']}' (#{data['state']}): #{data['url']})
       when 'ticket'
         data = target['ticket']
-        %(User #{data['user_id']} created the ticket '#{data['title']}' (#{data['state']}): /projects/#{data['project_id']}/tickets/#{data['number']})
+        %(#{data['user_name']} created the ticket '#{data['title']}' (#{data['state']}): #{data['url']})
+      when 'message'
+        data = target['message']
+        if data['parent_id'].blank? || data['parent_id'] == data['id']
+          %(#{data['user_name']} created a message '#{data['title']}': #{data['url']})
+        else
+          %(#{data['user_name']} commented on '#{data['title']}': #{data['url']})
+        end
+      when 'milestone'
+        data = target['milestone']
+        %(#{data['user_name']} updated a milestone '#{data['title']}': #{data['url']})
     end
 
   LighthouseNotifier::Campfire.speak message
