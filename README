@@ -1,0 +1,9 @@
+Lighthouse Notifier
+===================
+
+This is a little Sinatra app for testing out Lighthouse callbacks.  It's still
+a bit experimental, I want to tweak what Lighthouse sends.
+
+Start it up with this (after installing sinatra/json/tinder)
+
+ruby -rubygems lighthouse_notifier.rb spacemonkey tylerdurden@project-mayhem.com khakis [roomname]
