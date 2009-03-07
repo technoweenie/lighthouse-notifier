@@ -4,6 +4,27 @@ Lighthouse Notifier
 This is a little Sinatra app for testing out Lighthouse callbacks.  It's still
 a bit experimental, I want to tweak what Lighthouse sends.
 
-Start it up with this (after installing sinatra/json/tinder)
+Installation
+============
 
-ruby -rubygems lighthouse_notifier.rb spacemonkey tylerdurden@project-mayhem.com khakis [roomname]
+install Tokyo Cabinet: http://tokyocabinet.sourceforge.net/index.html
+
+sudo gem install sinatra
+sudo gem install json
+sudo gem install tinder
+sudo gem install thor
+sudo gem install rufus-tokyo
+
+Configure
+=========
+
+Some thor tasks to manage campfire configurations for projects:
+
+  $ thor lh_notifier:list
+  $ thor lh_notifier:set 44 --domain=foo --login=bob --password=secret --room=stuff --ssl=false
+  $ thor lh_notifier:show 44
+
+Start it up
+===========
+
+ruby -rubygems lib/lighthouse_notifier/web.rb
