@@ -7,6 +7,10 @@ configure do
   LighthouseNotifier::Config.connect(File.dirname(__FILE__) + '/../../config.tct', :mode => 'r')
 end
 
+get '/' do
+  "Send your Lighthouse callbacks requests to #{env['rack.url_scheme']}://#{env['HTTP_HOST']}/update."
+end
+
 # todo, send some valid json data like user name, project name, and url!
 post '/update' do
   target     = JSON.parse env["rack.input"].read
