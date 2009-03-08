@@ -24,9 +24,9 @@ module LighthouseNotifier
 
   module Campfire
     def self.ping(options, data, msg)
-      cf = Tinder::Campfire.new options[:domain], :ssl => options[:ssl]
-      cf.login options[:login], options[:password]
-      room   = options[:room] && cf.rooms.detect { |r| r.name == options[:room] }
+      cf = Tinder::Campfire.new options['domain'], :ssl => options['ssl']
+      cf.login options['login'], options['password']
+      room   = options['room'] && cf.rooms.detect { |r| r.name == options['room'] }
       room ||= cf.rooms[0]
       room.speak msg
       nil
