@@ -13,7 +13,7 @@ end
 
 # todo, send some valid json data like user name, project name, and url!
 post '/update' do
-  target     = JSON.parse env["rack.input"].read
+  target  = JSON.parse env["rack.input"].read
   message = \
     case target.keys.first
       when 'version'
@@ -40,6 +40,6 @@ post '/update' do
 
   if project_id
     options = LighthouseNotifier::Config[project_id]
-    LighthouseNotifier::Campfire.ping options, data, message
+    LighthouseNotifier::Campfire.ping(options, data, "[#{options['name']}]" << message)
   end
 end
