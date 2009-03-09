@@ -40,6 +40,6 @@ post '/update' do
 
   if project_id
     options = LighthouseNotifier::Config[project_id]
-    LighthouseNotifier::Campfire.ping(options, data, "[#{options['name']}]" << message)
+    LighthouseNotifier::Campfire.ping(options, data, "[#{options['name']}] " << message)
   end
 end
